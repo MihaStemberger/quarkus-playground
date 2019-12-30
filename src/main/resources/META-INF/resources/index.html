@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+
+<div class="container">
+    <form method="post" action="/users" id="userRegistration">
+        <input type="text" name="name" placeholder="Enter your name"/>
+        <input type="text" name="surname" placeholder="Enter your surname"/>
+        <input type="button" value="Submit button" onclick="SubmitController.send()"/>
+    </form>
+</div>
+
+
+
+<script type="text/javascript">
+    var SubmitController = {
+        send : function (e) {
+            let form = document.getElementById('userRegistration');
+            let name = form.querySelector('input[name="name"]').value;
+            let surname = form.querySelector('input[name="surname"]').value;
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8080/users", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                name: name,
+                surname: surname
+            }));
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
