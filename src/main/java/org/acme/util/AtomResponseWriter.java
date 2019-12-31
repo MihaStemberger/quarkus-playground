@@ -1,6 +1,9 @@
 package org.acme.util;
 
 
+import com.rometools.modules.base.GoogleBase;
+import com.rometools.modules.base.GoogleBaseImpl;
+import com.rometools.modules.base.types.FloatUnit;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
@@ -49,10 +52,15 @@ public class AtomResponseWriter implements MessageBodyWriter<List<User>> {
 
         for (User user : users) {
             SyndEntry entry = new SyndEntryImpl();
-            UserModuleIf userModule = new UserModuleImpl();
-            userModule.setName(user.getName());
-            userModule.setSurname(user.getSurname());
-            entry.getModules().add(userModule);
+            GoogleBase googleBase = new GoogleBaseImpl();
+            googleBase.setAge(47);
+            googleBase.setApparelType("Knife");
+            googleBase.setPrice(new FloatUnit("2"));
+            UserModuleIf userModuleIf = new UserModuleImpl();
+            userModuleIf.setName(user.getName());
+            userModuleIf.setSurname(user.getSurname());
+            entry.getModules().add(googleBase);
+            entry.getModules().add(userModuleIf);
             feed.getEntries().add(entry);
         }
         try {
