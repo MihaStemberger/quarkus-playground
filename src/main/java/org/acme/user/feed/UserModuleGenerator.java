@@ -13,13 +13,13 @@ public class UserModuleGenerator implements ModuleGenerator {
 
     @Override
     public String getNamespaceUri() {
-        return "http://test.miha.si";
+        return UserModuleIf.NAMESPACE.getURI();
     }
 
     @Override
     public Set<Namespace> getNamespaces() {
         Set<Namespace> result = new HashSet<>();
-        result.add(Namespace.getNamespace("test",getNamespaceUri()));
+        result.add(UserModuleIf.NAMESPACE);
         return result;
     }
 
@@ -27,15 +27,15 @@ public class UserModuleGenerator implements ModuleGenerator {
     public void generate(Module module, Element element) {
         UserModuleIf userModuleIf = (UserModuleIf) module;
         if (userModuleIf.getName() != null) {
-            element.addContent(generateSimpleElement("name", userModuleIf.getName()));
+            element.addContent(generateSimpleElement(UserTags.NAME.name(), userModuleIf.getName()));
         }
         if (userModuleIf.getSurname() != null) {
-            element.addContent(generateSimpleElement("surname", userModuleIf.getSurname()));
+            element.addContent(generateSimpleElement(UserTags.SOMETHING_ELSE.name(), userModuleIf.getSurname()));
         }
     }
 
     protected Element generateSimpleElement(String name, String value) {
-        Element element = new Element(name, Namespace.getNamespace("test", getNamespaceUri()));
+        Element element = new Element(name, UserModuleIf.NAMESPACE);
         element.addContent(value);
         return element;
     }

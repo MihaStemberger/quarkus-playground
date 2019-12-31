@@ -10,7 +10,7 @@ public class UserModuleImpl extends ModuleImpl implements UserModuleIf {
     private String surname;
 
     public UserModuleImpl() {
-        super(UserModuleIf.class, "http://test.miha.si");
+        super(UserModuleIf.class, UserModuleIf.URI);
     }
 
     @Override

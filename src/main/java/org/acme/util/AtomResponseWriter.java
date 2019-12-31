@@ -44,7 +44,6 @@ public class AtomResponseWriter implements MessageBodyWriter<List<User>> {
         SyndFeed feed = new SyndFeedImpl();
         feed.setTitle("test-title");
         feed.setDescription("test-description");
-        feed.setUri("something");
         feed.setLink("https://example.org");
         feed.setFeedType("atom_1.0");
 
