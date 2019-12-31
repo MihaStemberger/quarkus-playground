@@ -1,32 +1,32 @@
-package org.acme.UserFeed;
+package org.acme.user.feed;
 
+import com.rometools.rome.feed.module.Module;
+import com.rometools.rome.io.ModuleParser;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 
-import com.sun.syndication.feed.module.Module;
-import com.sun.syndication.io.ModuleParser;
-import org.jdom.Element;
-import org.jdom.Namespace;
+import java.util.Locale;
 
 public class UserModuleParser implements ModuleParser {
 
-    private static final Namespace USER_NS = Namespace.getNamespace("user", UserModuleIf.URI);
 
     @Override
     public String getNamespaceUri() {
-        return UserModuleIf.URI;
+        return "http://test.miha.si";
     }
 
     @Override
-    public Module parse(Element element) {
+    public Module parse(Element element, Locale locale) {
         boolean foundSomething = false;
         UserModuleIf userModuleIf = new UserModuleImpl();
 
-        Element e = element.getChild("name", USER_NS);
+        Element e = element.getChild("name", Namespace.getNamespace("test", getNamespaceUri()));
         if (e != null) {
             foundSomething = true;
             userModuleIf.setName(e.getText());
         }
 
-        e = element.getChild("surname", USER_NS);
+        e = element.getChild("surname", Namespace.getNamespace("test", getNamespaceUri()));
         if (e != null) {
             foundSomething = true;
             userModuleIf.setSurname(e.getText());
@@ -34,6 +34,4 @@ public class UserModuleParser implements ModuleParser {
 
         return foundSomething ? userModuleIf : null;
     }
-
-
 }

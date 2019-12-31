@@ -1,7 +1,7 @@
 package org.acme.util;
 
 
-import org.acme.User;
+import org.acme.user.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.validation.Valid;

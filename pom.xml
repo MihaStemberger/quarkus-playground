@@ -13,10 +13,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus-plugin.version>1.0.1.Final</quarkus-plugin.version>
-        <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
+        <quarkus-plugin.version>1.1.0.CR1</quarkus-plugin.version>
+        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-        <quarkus.platform.version>1.0.1.Final</quarkus.platform.version>
+        <quarkus.platform.version>1.1.0.CR1</quarkus.platform.version>
         <surefire-plugin.version>2.22.1</surefire-plugin.version>
     </properties>
     <dependencyManagement>
@@ -58,33 +58,21 @@
             <artifactId>quarkus-resteasy-jsonb</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.camel.quarkus</groupId>
-            <artifactId>camel-quarkus-microprofile-health</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.quarkus</groupId>
-            <artifactId>camel-quarkus-microprofile-metrics</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-        
-<!--        <dependency>-->
-<!--            <groupId>com.rometools</groupId>-->
-<!--            <artifactId>rome</artifactId>-->
-<!--            <version>1.12.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.rometools</groupId>-->
-<!--            <artifactId>rome-modules</artifactId>-->
-<!--            <version>1.12.2</version>-->
-<!--        </dependency>-->
         <dependency>
-            <groupId>rome</groupId>
+            <groupId>com.rometools</groupId>
             <artifactId>rome</artifactId>
-            <version>1.0</version>
+            <version>1.12.2</version>
         </dependency>
+
+
+<!--        <dependency>-->
+<!--            <groupId>rome</groupId>-->
+<!--            <artifactId>rome</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>

@@ -1,11 +1,9 @@
-package org.acme.UserFeed;
+package org.acme.user.feed;
 
-
-import com.sun.syndication.feed.module.Module;
+import com.rometools.rome.feed.module.Module;
 
 public interface UserModuleIf extends Module {
 
-    public static final String URI = "http://rome.dev.java.net/module/sample/1.0";
 
     public String getName();
     public void setName(String name);

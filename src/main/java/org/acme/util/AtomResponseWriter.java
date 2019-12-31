@@ -1,15 +1,15 @@
 package org.acme.util;
 
 
-import com.sun.syndication.feed.synd.SyndEntry;
-import com.sun.syndication.feed.synd.SyndEntryImpl;
-import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.feed.synd.SyndFeedImpl;
-import com.sun.syndication.io.FeedException;
-import com.sun.syndication.io.SyndFeedOutput;
-import org.acme.User;
-import org.acme.UserFeed.UserModuleIf;
-import org.acme.UserFeed.UserModuleImpl;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndEntryImpl;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndFeedImpl;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedOutput;
+import org.acme.user.User;
+import org.acme.user.feed.UserModuleIf;
+import org.acme.user.feed.UserModuleImpl;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -17,13 +17,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 @Provider
@@ -44,7 +41,6 @@ public class AtomResponseWriter implements MessageBodyWriter<List<User>> {
 
     @Override
     public void writeTo(List<User> users, Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
         SyndFeed feed = new SyndFeedImpl();
         feed.setTitle("test-title");
         feed.setDescription("test-description");
@@ -54,23 +50,17 @@ public class AtomResponseWriter implements MessageBodyWriter<List<User>> {
 
         for (User user : users) {
             SyndEntry entry = new SyndEntryImpl();
-
             UserModuleIf userModule = new UserModuleImpl();
             userModule.setName(user.getName());
             userModule.setSurname(user.getSurname());
             entry.getModules().add(userModule);
-            entry.setAuthor("test");
             feed.getEntries().add(entry);
-
         }
-
-
         try {
             outputStream.write(new SyndFeedOutput().outputString(feed).getBytes());
         } catch (FeedException e) {
             e.printStackTrace();
         }
-
 
     }
 }

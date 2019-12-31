@@ -1,35 +1,26 @@
-package org.acme.UserFeed;
+package org.acme.user.feed;
 
-import com.sun.syndication.feed.module.Module;
-import com.sun.syndication.io.ModuleGenerator;
-import org.jdom.Element;
-import org.jdom.Namespace;
 
-import java.util.Collections;
+import com.rometools.rome.feed.module.Module;
+import com.rometools.rome.io.ModuleGenerator;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class UserModuleGenerator implements ModuleGenerator {
 
-    private static final Namespace USER_NS = Namespace.getNamespace("user", UserModuleIf.URI);
-
-    private static final Set NAMESPACES;
-
-    static {
-        Set nss = new HashSet();
-        nss.add(USER_NS);
-        NAMESPACES = Collections.unmodifiableSet(nss);
-    }
-
-
     @Override
     public String getNamespaceUri() {
-        return UserModuleIf.URI;
+        return "http://test.miha.si";
     }
 
     @Override
-    public Set getNamespaces() {
-        return NAMESPACES;
+    public Set<Namespace> getNamespaces() {
+        Set<Namespace> result = new HashSet<>();
+        result.add(Namespace.getNamespace("test",getNamespaceUri()));
+        return result;
     }
 
     @Override
@@ -43,9 +34,8 @@ public class UserModuleGenerator implements ModuleGenerator {
         }
     }
 
-
     protected Element generateSimpleElement(String name, String value) {
-        Element element = new Element(name, USER_NS);
+        Element element = new Element(name, Namespace.getNamespace("test", getNamespaceUri()));
         element.addContent(value);
         return element;
     }

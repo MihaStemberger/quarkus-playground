@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
